@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="position-absolute top-0 start-50">
     <h2>どちらを選びますか？</h2>
-    <button @click="selectMember(member1)">{{ member1.name }}</button>
-    <button @click="selectMember(member2)">{{ member2.name }}</button>
+    <button class="btn btn-outline-primary" @click="selectMember(member1)">{{ member1.name }}</button>
+    <button class="btn btn-outline-primary" @click="selectMember(member2)">{{ member2.name }}</button>
   </div>
 </template>
 
