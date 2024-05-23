@@ -1,55 +1,55 @@
 <template>
   <div>
-    <ItemPair
+    <MemberPair
       v-if="currentPair"
-      :item1="currentPair[0]"
-      :item2="currentPair[1]"
-      @selected="handleSelection"
+      :member1="currentPair[0]"
+      :member2="currentPair[1]"
+      @selected="handleSel"
     />
     <div v-else>
       <h2>ランキング結果</h2>
       <ul>
-        <li v-for="item in sortedItems" :key="item.id">{{ item.name }}: {{ item.score }}</li>
+        <li v-for="member in sortedmembers" :key="member.id">{{ member.name }}: {{ member.score }}</li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { items } from '../data.js';
-import ItemPair from '../components/ItemPair.vue';
+import { members } from '../data.js';
+import MemberPair from '../components/MemberPair.vue';
 
 export default {
-  components: { ItemPair },
+  components: { MemberPair },
   data() {
     return {
-      items: items.map(item => ({ ...item, score: 0 })),  // アイテムリストにスコアを追加
+      members: members.map(member => ({ ...member, score: 0 })),  // アイテムリストにスコアを追加
       currentPairIndex: 0,  // 現在のペアのインデックス
-      pairCombinations: this.generatePairCombinations(items),  // 全てのペアの組み合わせ
+      pairCombinations: this.genPairCom(members),  // 全てのペアの組み合わせ
     };
   },
   computed: {
     currentPair() {
       return this.pairCombinations[this.currentPairIndex] || null;  // 現在のペアを取得
     },
-    sortedItems() {
-      return [...this.items].sort((a, b) => b.score - a.score);  // スコアに基づいてアイテムをソート
+    sortedmembers() {
+      return [...this.members].sort((a, b) => b.score - a.score);  // スコアに基づいてアイテムをソート
     }
   },
   methods: {
-    generatePairCombinations(items) {
+    genPairCom(members) {
       const pairs = [];
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          pairs.push([items[i], items[j]]);  // 全てのペアの組み合わせを生成
+      for (let i = 0; i < members.length; i++) {
+        for (let j = i + 1; j < members.length; j++) {
+          pairs.push([members[i], members[j]]);  // 全てのペアの組み合わせを生成
         }
       }
       return pairs;
     },
-    handleSelection(selectedItem) {
-      const item = this.items.find(i => i.id === selectedItem.id);
-      if (item) {
-        item.score++;  // 選択されたアイテムのスコアを増加
+    handleSel(selectedItem) {
+      const member = this.members.find(i => i.id === selectedItem.id);
+      if (member) {
+        member.score++;  // 選択されたアイテムのスコアを増加
       }
       this.currentPairIndex++;  // 次のペアに進む
     }
