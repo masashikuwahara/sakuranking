@@ -4,14 +4,14 @@
       v-if="currentPair"
       :member1="currentPair[0]"
       :member2="currentPair[1]"
-      @selected="handleSel"
+      @selected="handSel"
     />
-    <div v-else class="position-absolute top-0 start-50">
+    <div v-else>
       <h2>ランキング結果</h2>
       <ul>
         <li v-for="member in sortedMembers" :key="member.id">{{ member.name }}: {{ member.score }}</li>
       </ul>
-      <button class="btn btn-outline-primary" @click="restart">戻る</button>
+      <button @click="resetRanking">最初に戻る</button>
     </div>
   </div>
 </template>
@@ -47,15 +47,16 @@ export default {
       }
       return pairs;
     },
-    handleSel(selectedItem) {
+    handSel(selectedItem) {
       const member = this.members.find(i => i.id === selectedItem.id);
       if (member) {
         member.score++;  // 選択されたアイテムのスコアを増加
       }
       this.currentPairIndex++;  // 次のペアに進む
     },
-    restart() {
+    resetRanking() {
       this.currentPairIndex = 0;
+      this.members = this.members.map(member => ({ ...member, score: 0 }));
     }
   }
 }
