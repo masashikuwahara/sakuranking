@@ -7,9 +7,12 @@
       @selected="handSel"
     />
     <div v-else>
-      <h2>ランキング結果</h2>
+      <h2>結果</h2>
       <ul>
-        <li v-for="member in sortedMembers" :key="member.id">{{ member.name }}: {{ member.score }}</li>
+        <li v-for="member in sortedMembers" :key="member.id">
+          <img :src="member.image" :alt="member.name">
+          <span>{{ member.name }}</span>
+        </li>
       </ul>
       <button @click="resetRanking">最初に戻る</button>
     </div>
@@ -61,3 +64,9 @@ export default {
   }
 }
 </script>
+
+<style>
+li {
+  list-style: none;
+}
+</style>
