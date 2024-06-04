@@ -7,11 +7,11 @@
       @selected="handSel"
     />
     <div v-else>
-      <h2>結果</h2>
+      <h1>結果</h1>
       <ul>
         <li v-for="member in sortedMembers" :key="member.id">
           <img :src="member.image" :alt="member.name">
-          <span>{{ member.name }}</span>
+          <span>{{ member.name }}</span>スコア<span>{{ member.score }}</span>
         </li>
       </ul>
       <button @click="resetRanking">最初に戻る</button>
