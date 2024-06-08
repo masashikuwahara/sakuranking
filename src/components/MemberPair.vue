@@ -1,5 +1,5 @@
 <template>
-  <h1>どちらかを選んでください</h1>
+  <h1>選んでください</h1>
   <div class="member-pair">
     <div class="member" @click="selectMember(member1)">
       <img :src="member1.image" :alt="member1.name" class="memImg">
