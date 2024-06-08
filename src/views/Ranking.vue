@@ -9,12 +9,13 @@
     <div v-else>
       <h1>結果</h1>
       <ul>
-        <li v-for="member in sortedMembers" :key="member.id">
-          <img :src="member.image" :alt="member.name">
-          <span>{{ member.name }}</span>スコア<span>{{ member.score }}</span>
+        <li v-for="(member, index) in sortedMembers" :key="member.id" class="ranking-member">
+          <span class="ranking-position">{{ index + 1 }}位</span>
+          <img :src="member.image" :alt="member.name" class="ranking-image">
+          <div>{{ member.name }}: {{ member.score }}</div>
         </li>
       </ul>
-      <button @click="resetRanking">最初に戻る</button>
+      <button @click="resetRanking">もう一度やる！</button>
     </div>
   </div>
 </template>
@@ -50,8 +51,8 @@ export default {
       }
       return pairs;
     },
-    handSel(selectedItem) {
-      const member = this.members.find(i => i.id === selectedItem.id);
+    handSel(selectedmember) {
+      const member = this.members.find(i => i.id === selectedmember.id);
       if (member) {
         member.score++;  // 選択されたアイテムのスコアを増加
       }
@@ -68,5 +69,43 @@ export default {
 <style>
 li {
   list-style: none;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: auto;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #f19db5;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #f19db5c4;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ranking-position {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.ranking-image {
+
+  object-fit: cover;
+  margin-right: 10px;
 }
 </style>
