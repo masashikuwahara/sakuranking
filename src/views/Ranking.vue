@@ -51,10 +51,21 @@ export default {
       }
       return pairs;
     },
-    handSel(selectedmember) {
-      const member = this.members.find(i => i.id === selectedmember.id);
-      if (member) {
-        member.score++;  // 選択されたアイテムのスコアを増加
+    handSel({ member, draw, member1, member2 }) {
+      if (draw) {
+        // 引き分けの場合、両方のアイテムのスコアを増加
+        const memberA = this.members.find(i => i.id === member1.id);
+        const memberB = this.members.find(i => i.id === member2.id);
+        if (memberA && memberB) {
+          memberA.score++;
+          memberB.score++;
+        }
+      } else {
+        // 引き分けでない場合、選択されたアイテムのスコアを増加
+        const selectedmember = this.members.find(i => i.id === member.id);
+        if (selectedmember) {
+          selectedmember.score++;
+        }
       }
       this.currentPairIndex++;  // 次のペアに進む
     },

@@ -10,6 +10,7 @@
       <p>{{ member2.name }}</p>
     </div>
   </div>
+  <button class="member-draw" @click="selectDraw">引き分け</button>
 </template>
 
 <script>
@@ -20,7 +21,10 @@ export default {
   },
   methods: {
     selectMember(member) {
-      this.$emit('selected', member);
+      this.$emit('selected', { member, draw: false });
+    },
+    selectDraw() {
+      this.$emit('selected', { member1: this.member1, member2: this.member2, draw: true });
     }
   }
 }
@@ -35,5 +39,9 @@ export default {
 
 .memImg {
   width: 95%;
+}
+
+.member-draw {
+  width: 300px;
 }
 </style>
