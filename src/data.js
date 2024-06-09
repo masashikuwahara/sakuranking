@@ -25,5 +25,5 @@ export const members = [
   { id: 24, name: '的野 美青', image: new URL('./assets/mio.jpg', import.meta.url).href },
   { id: 25, name: '向井 純葉', image: new URL('./assets/itoha.jpg', import.meta.url).href },
   { id: 26, name: '村井 優', image: new URL('./assets/yuu.jpg', import.meta.url).href },
-  { id: 27, name: '村山 美羽', image: new URL('./assets/mio.jpg', import.meta.url).href }
+  { id: 27, name: '村山 美羽', image: new URL('./assets/miu.jpg', import.meta.url).href }
 ];
